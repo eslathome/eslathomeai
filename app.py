@@ -468,6 +468,7 @@ def main():
     initialize_session_state()
 
     st.title("📙 ESL at Home - AI Chatbot")
+    st.link_button("**ESL at Home** Homepage", "https://eslathome.github.io/")
     #st.divider()
     
     # Display messages in the main chat area (outside the sidebar)
