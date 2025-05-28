@@ -20,6 +20,16 @@ from datetime import datetime, timedelta
 
 # Check for password in session state and persistent login
 
+LANGUAGE_COMMANDS = {
+    "Speak in Spanish": "Habla español desde ahora en adelante.",
+    "Speak in French": "Parlez français dès maintenant.",
+    "Speak in Chinese": "从现在开始说中文。",
+    "Speak in Arabic": "تحدث باللغة العربية من الآن فصاعدًا.",
+    "Speak in Vietnamese": "Nói tiếng Việt từ bây giờ.",
+    "Speak in Hindi": "अब से हिंदी में बात करें।",
+    "Speak in Korean": "지금부터 한국어로 말하세요.",
+}
+
 def initialize_font_preferences():
     if 'font_preferences' not in st.session_state:
         # Try to load from local storage
@@ -355,6 +365,9 @@ def initialize_session_state():
     if 'show_custom_cmd_form' not in st.session_state:
         st.session_state.show_custom_cmd_form = False
 
+    if 'triggered_language_command' not in st.session_state:
+        st.session_state.triggered_language_command = None
+
 def get_audio_hash(audio_data):
     return hashlib.md5(audio_data.getvalue()).hexdigest()
 
@@ -478,8 +491,18 @@ def main():
         with st.chat_message(message["role"]):
             st.markdown(message["content"], unsafe_allow_html=True)
 
+    with st.sidebar:
+        st.subheader("🌍 Language Preferences")
+        for label, command in LANGUAGE_COMMANDS.items():
+            if st.button(label):
+                st.session_state.triggered_language_command = command
+
     # Chat input handling
     prompt = st.chat_input("What information can I provide?")
+
+    if st.session_state.triggered_language_command:
+        prompt = st.session_state.triggered_language_command
+        st.session_state.triggered_language_command = None
 
     if prompt:
         final_prompt = prompt
