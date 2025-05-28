@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 # Check for password in session state and persistent login
 
 LANGUAGE_COMMANDS = {
+    "Speak in English": "Speak in English from now on.",
     "Speak in Spanish": "Habla español desde ahora en adelante.",
     "Speak in Chinese (Simplified)": "从现在开始说中文。",
     "Speak in Hindi": "अब से हिंदी में बात करें।",
