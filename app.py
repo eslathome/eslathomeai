@@ -310,6 +310,8 @@ Focus Areas:
 * Relevant statistics and data related to ESL in Houston. 
 
 Remember to always focus your responses on the Houston context and provide accurate, verifiable information with proper citations.
+
+**********IMPORTANT: If the responder is typing in a different language, provide responses in that language because this is for ESL learners.
 """
     
 def initialize_session_state():
